@@ -3,9 +3,9 @@ import express from "express";
 import {
   getAllJokes,
   getJokeById,
-  createJoke,
-  likeJoke,
-  dislikeJoke,
+  createJokes,
+  likeJokes,
+  dislikeJokes,
   getByCategory,
   searchJokes,
 } from "../controller/joke.controller.js";
@@ -20,10 +20,10 @@ router.get("/filter", getByCategory);
 
 router.get("/:id", getJokeById);
 
-router.post("/", createJoke);
+router.post("/", createJokes);
 
-router.post("/:id/like", likeJoke);
+router.post("/:id/like", likeJokes);
 
-router.post("/:id/dislike", dislikeJoke);
+router.post("/:id/dislike", dislikeJokes);
 
 export default router;

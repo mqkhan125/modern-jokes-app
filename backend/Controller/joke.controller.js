@@ -60,7 +60,7 @@ export const getByCategory = (req, res) => {
   res.json(filtered);
 };
 
-export const getSearch = (req, res) => {
+export const searchJokes = (req, res) => {
   const { q } = req.query;
 
   const filtered = jokes.filter(
