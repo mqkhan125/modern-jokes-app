@@ -46,4 +46,36 @@ export const jokes = [
     difficulty: "medium",
     createdAt: new Date(),
   },
+
+  {
+    id: 4,
+    title: "AI Assistant",
+    content:
+      "I asked an AI to write my homework. Now my teacher thinks I'm a robot too.",
+    category: "AI",
+    language: "en",
+    tags: ["ai", "school", "funny"],
+    likes: 18,
+    dislikes: 0,
+    views: 160,
+    isFeatured: false,
+    difficulty: "light",
+    createdAt: new Date(),
+  },
+
+  {
+    id: 5,
+    title: "JavaScript Promise",
+    content:
+      "JavaScript promises a lot, but sometimes it just rejects everything.",
+    category: "Programming",
+    language: "en",
+    tags: ["javascript", "promise", "coding"],
+    likes: 42,
+    dislikes: 4,
+    views: 520,
+    isFeatured: true,
+    difficulty: "clever",
+    createdAt: new Date(),
+  },
 ];

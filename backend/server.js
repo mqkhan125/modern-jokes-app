@@ -1,9 +1,12 @@
-const express = require("express");
-const app = express()
+import express from "express"
+import cors from "cors"
 
-app.get("/", (req, res) => {
-     res.send("Backend Running Successfully");
-})
+ const app = express()
+ app.use(cors())
+
+ app.use(express.json())
+
+ app.use("/api/jokes")
 
 const PORT = 5000;
 
