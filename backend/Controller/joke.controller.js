@@ -1,4 +1,4 @@
-import { jokes } from "../data/joke";
+import { jokes } from "../data/joke.js";
 
 export const getAllJokes = (req, res) => {
   res.json(jokes);
@@ -26,7 +26,7 @@ export const createJokes = (req, res) => {
   };
 
   jokes.push(newJokes);
-  res.status(202).json(newJokes);
+  res.status(201).json(newJokes);
 };
 
 export const likeJokes = (req, res) => {
@@ -36,7 +36,7 @@ export const likeJokes = (req, res) => {
     return res.status(404).json({
       message: "like joke not found",
     });
-  joke.likeJokes += 1;
+  joke.likes += 1;
   res.json(joke);
 };
 
@@ -47,24 +47,26 @@ export const dislikeJokes = (req, res) => {
     return res.status(404).json({
       message: "like joke not found",
     });
-  joke.dislikeJokes += 1;
+  joke.dislikes += 1;
   res.json(joke);
 };
 
 export const getByCategory = (req, res) => {
-     const { category } = req.query;
+  const { category } = req.query;
 
-     const filtered = jokes.filter((j) => j.category.toLowerCase() === category.toLowerCase())
-     res.json(filtered)
-}
+  const filtered = jokes.filter(
+    (j) => j.category.toLowerCase() === category.toLowerCase(),
+  );
+  res.json(filtered);
+};
 
 export const getSearch = (req, res) => {
-    const {q} = req.query;
+  const { q } = req.query;
 
-    const filtered = jokes.filter(
-      (j) =>
-        j.title.toLowerCase().includes(q.toLowerCase()) ||
-        j.content.toLowerCase().includes(q.toLowerCase())
-    );
-    res.json(filtered)
-}
+  const filtered = jokes.filter(
+    (j) =>
+      j.title.toLowerCase().includes(q.toLowerCase()) ||
+      j.content.toLowerCase().includes(q.toLowerCase()),
+  );
+  res.json(filtered);
+};

@@ -8,7 +8,7 @@ import {
   dislikeJoke,
   getByCategory,
   searchJokes,
-} from "../controllers/jokes.controller.js";
+} from "../controller/joke.controller.js";
 
 const router = express.Router();
 
