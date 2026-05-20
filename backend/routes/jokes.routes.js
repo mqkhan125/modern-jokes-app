@@ -1,15 +1,29 @@
 import express from "express";
 
-import { getAllJokes, getJokeById, getSearch, likeJokes, dislikeJokes, createJokes, getByCategory } from "../Controller/jokes.controller";
+import {
+  getAllJokes,
+  getJokeById,
+  createJoke,
+  likeJoke,
+  dislikeJoke,
+  getByCategory,
+  searchJokes,
+} from "../controllers/jokes.controller.js";
 
-import Router from express.Router();
+const router = express.Router();
 
-Router.get("/", getAllJokes);
-Router.get("/search", getSearch);
-Router.get("/filter", getByCategory);
-Router.get("/:id", getJokeById);
-Router.post("/", createJokes);
-Router.post("/:id/like", likeJokes);
-Router.post("/:id/dislike", dislikeJokes)
+router.get("/", getAllJokes);
 
-export default Router;
+router.get("/search", searchJokes);
+
+router.get("/filter", getByCategory);
+
+router.get("/:id", getJokeById);
+
+router.post("/", createJoke);
+
+router.post("/:id/like", likeJoke);
+
+router.post("/:id/dislike", dislikeJoke);
+
+export default router;

@@ -1,13 +1,13 @@
-import express from "express"
+import express from "express";
 import cors from "cors"
-import jokeRoutes from "./routes/jokes.routes"
+import jokesRouter from "./routes/jokes.routes.js";
 
  const app = express()
  app.use(cors())
 
  app.use(express.json())
 
- app.use("/api/jokes", jokeRoutes)
+ app.use("/api/jokes", jokesRouter)
 
 const PORT = 5000;
 
