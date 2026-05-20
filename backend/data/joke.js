@@ -3,7 +3,7 @@ export const jokes = [
     id: 1,
     title: "The Debugging Engineer",
     content:
-      "A software engineer said love is like a bug—you only notice it after deployment.",
+      "A software engineer said love is like a bug you only notice it after deployment.",
     category: "Technology",
     language: "en",
     tags: ["engineer", "coding"],
