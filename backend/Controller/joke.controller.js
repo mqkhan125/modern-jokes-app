@@ -66,7 +66,7 @@ export const searchJokes = (req, res) => {
   const filtered = jokes.filter(
     (j) =>
       j.title.toLowerCase().includes(q.toLowerCase()) ||
-      j.content.toLowerCase().includes(q.toLowerCase()),
+      j.category.toLowerCase().includes(q.toLowerCase()),
   );
   res.json(filtered);
 };
