@@ -4,49 +4,71 @@ import axios from "axios";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import JokeCard from "./components/JokeCard";
+import Category from "./components/Category";
 
 function App() {
   const [jokes, setJokes] = useState([]);
+  const [allJokes, setAllJokes] = useState([])
+  const [selectCategory, setSelectCategory] = useState("All");
 
   const API = "http://localhost:5000/api/jokes";
 
-  useEffect(() => {
-    const fetchJokes = async () => {
-      const res = await axios.get(API);
-      setJokes(res.data);
-      console.log(res.data)
-    };
-    fetchJokes();
-  }, []);
+ useEffect(() => {
+   const fetchJokes = async () => {
+     const res = await axios.get(API);
 
-  const handleInput = async(e) => {
+     setAllJokes(res.data);
+     setJokes(res.data);
+   };
+
+   fetchJokes();
+ }, []);
+
+  const handleInput = async (e) => {
     const value = e.target.value;
 
-    if(value === ""){
+    if (value === "") {
       const res = await axios.get(API);
-      setJokes(res.data)
+      setJokes(res.data);
       return;
     }
-     const res = await axios.get(`${API}/search?q=${value}`)
-     setJokes(res.data)
+    const res = await axios.get(`${API}/search?q=${value}`);
+    setJokes(res.data);
   };
+
+  const categories = [...new Set(allJokes.map((j) => j.category))];
+
+  const handleCategory = async (cat) => {
+    setSelectCategory(cat);
+  };
+
+  useEffect(() => {
+    const fetchJokes = async () => {
+      if (selectCategory === "All") {
+        const res = await axios.get(`${API}/`);
+        setJokes(res.data);
+      } else {
+        const res = await axios.get(`${API}/filter?category=${selectCategory}`);
+        setJokes(res.data);
+      }
+    };
+    fetchJokes()
+  }, [selectCategory]);
 
   return (
     <div className="flex bg-gray-950 text-white min-h-screen">
-      <Sidebar />
+      <Sidebar jokes={jokes} />
 
       <div className="flex-1 p-6">
-        <Header
-          total={jokes.length}
-          onChange={handleInput}
-        />
+        <Header total={jokes.length} onChange={handleInput} />
 
-        <div className="grid grid-cols-3 gap-4 my-6">
-          <div className="bg-gray-900 p-4 rounded-xl">
-            Total Jokes: {jokes.length}
-          </div>
-          <div className="bg-gray-900 p-4 rounded-xl"> Featured</div>
-          <div className="bg-gray-900 p-4 rounded-xl"> Active</div>
+        <div>
+          <Category
+            selectCategory={selectCategory}
+            handleCategory={handleCategory}
+            category={categories}
+            isActive={selectCategory}
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

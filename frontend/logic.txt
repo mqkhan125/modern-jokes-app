@@ -1,0 +1,7 @@
+1. Check state
+2. Check event fired?
+3. Check state updated?
+4. Check re-render?
+5. Check derived logic?
+6. Check useEffect?
+7. Check mutation?
